@@ -58,3 +58,6 @@ typings/
 .env
 # the bin folder
 bin
+
+# the obj folder
+obj
