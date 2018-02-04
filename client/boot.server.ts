@@ -7,7 +7,8 @@ import {
     ApplicationRef,
     NgZone,
     ValueProvider,
-    StaticProvider
+    StaticProvider,
+    NgModuleRef
 } from "@angular/core";
 import {
     platformDynamicServer,
@@ -19,7 +20,6 @@ import {
     RenderResult
 } from "aspnet-prerendering";
 import { AppModule } from "./app/app.server.module";
-import { NgModuleRef } from "@angular/core/src/linker/ng_module_factory";
 
 enableProdMode();
 export default createServerRenderer((params: any) => {
@@ -47,7 +47,7 @@ export default createServerRenderer((params: any) => {
 
         return new Promise<RenderResult>((resolve, reject) => {
             zone.onError.subscribe((errorInfo: any) => reject(errorInfo));
-            appRef.isStable.first(isStable => isStable).subscribe(() => {
+            appRef.isStable.first((isStable: boolean) => isStable).subscribe(() => {
                 // because 'onStable' fires before 'onError', we have to delay slightly before
                 // completing the request in case there's an error to report
                 setImmediate(() => {

@@ -61,3 +61,8 @@ bin
 
 # the obj folder
 obj
+
+# the dist folders
+
+wwwroot/dist
+client/dist

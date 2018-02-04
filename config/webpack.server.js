@@ -3,6 +3,7 @@ const common = require("./webpack.common");
 const helper = require("./helper");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
+const AotPlugin = require("@ngtools/webpack").AotPlugin;
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     var plugins = [
@@ -17,7 +18,7 @@ module.exports = (env) => {
         // Plugins that apply in production builds only
         plugins.push(new AotPlugin({
             tsConfigPath: "./tsconfig.json",
-            entryModule: helper.root("client", "app", "app.server.module#AppModule"),
+            entryModule: helper.root("client", "app", "app.server.module.ts#AppModule"),
             exclude: ["./**/*.browser.ts"]
         }));
     }

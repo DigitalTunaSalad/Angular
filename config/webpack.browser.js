@@ -25,12 +25,12 @@ module.exports = (env) => {
     } else {
         plugins.push(...[
             // Plugins that apply in production builds only
-            new webpack.optimize.UglifyJsPlugin(),
             new AotPlugin({
                 tsConfigPath: "./tsconfig.json",
-                entryModule: helper.root("client", "app", "app.browser.module#AppModule"),
+                entryModule:  helper.root("client", "app", "app.browser.module#AppModule"),
                 exclude: ["/**/*.server.ts"]
-            })
+            }),
+            new webpack.optimize.UglifyJsPlugin()
         ]);
     }
     return merge(common(env), {
