@@ -5,9 +5,10 @@ const webpack = require("webpack");
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
+    const buildSass = env && env.sass;
     const extractSass = new ExtractTextPlugin({
         filename: "theme.css",
-        disable: isDevBuild
+        disable: isDevBuild || buildSass
     });
     return {
         stats: {
