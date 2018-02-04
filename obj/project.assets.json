@@ -12541,11 +12541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\projects\\test2\\Server.csproj",
+      "projectUniqueName": "c:\\projects\\angular\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "c:\\projects\\test2\\Server.csproj",
+      "projectPath": "c:\\projects\\angular\\Server.csproj",
       "packagesPath": "C:\\Users\\Kongen\\.nuget\\packages\\",
-      "outputPath": "c:\\projects\\test2\\obj\\",
+      "outputPath": "c:\\projects\\angular\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
