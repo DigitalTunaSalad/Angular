@@ -3,7 +3,7 @@ const common = require("./webpack.common");
 const helper = require("./helper");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
-const AotPlugin = require("@ngtools/webpack").AotPlugin;
+const AotPlugin = require("@ngtools/webpack").AngularCompilerPlugin;
 const path = require("path");
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
