@@ -4,7 +4,7 @@
   "description": "Angular boilerplate code using webpack",
   "scripts": {
     "test": "karma start config/karma.conf.js",
-    "start": "node node_modules/webpack/bin/webpack.js --config webpack.vendor.config.js && node node node_modules/webpack/bin/webpack.js"
+    "start": "node node_modules/webpack/bin/webpack.js --config webpack.vendor.config.js && node node_modules/webpack/bin/webpack.js"
   },
   "author": "Digital Tuna Salad",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.4.1",
     "css-loader": "^0.28.9",
+    "es6-promise": "^4.2.4",
     "es6-shim": "^0.35.3",
     "event-source-polyfill": "0.0.12",
     "extract-text-webpack-plugin": "^3.0.2",
