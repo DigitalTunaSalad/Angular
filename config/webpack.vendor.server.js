@@ -34,7 +34,7 @@ module.exports = (env) => {
         resolve: { mainFields: ["main"] },
         entry: { 
             // todo: set option too use node express
-            vendor: allModules.concat(["aspnet-prerendering"]) 
+            vendor: allModules//.concat(["aspnet-prerendering"]) 
         },
         output: {
             path: helper.root("client", "dist"),

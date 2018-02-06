@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Angular boilerplate code using webpack",
   "scripts": {
-    "test": "karma start config/karma.conf.js"
+    "test": "karma start config/karma.conf.js",
+    "start": "node node_modules/webpack/bin/webpack.js --config webpack.vendor.config.js && node node node_modules/webpack/bin/webpack.js"
   },
   "author": "Digital Tuna Salad",
   "license": "ISC",
@@ -25,8 +26,6 @@
     "@types/webpack-env": "^1.13.5",
     "angular2-router-loader": "^0.3.5",
     "angular2-template-loader": "^0.6.2",
-    "aspnet-prerendering": "^3.0.1",
-    "aspnet-webpack": "^2.0.3",
     "awesome-typescript-loader": "^3.4.1",
     "css-loader": "^0.28.9",
     "es6-shim": "^0.35.3",
