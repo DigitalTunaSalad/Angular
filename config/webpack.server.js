@@ -18,7 +18,7 @@ module.exports = (env) => {
         // Plugins that apply in production builds only
         plugins.push(new AotPlugin({
             tsConfigPath: "./tsconfig.json",
-            entryModule: helper.root("client", "app", "app.server.module.ts#AppModule"),
+            entryModule: helper.root("client", "app", "app.server.module#AppModule"),
             exclude: ["./**/*.browser.ts"]
         }));
     }
