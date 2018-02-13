@@ -14,7 +14,7 @@ export function server(env: any): Configuration {
             name: "./vendor"
         })
     ];
-    if (isDevBuild) {
+    if (!isDevBuild) {
         plugins.push(
             // plugins that apply in development builds only
             new AngularCompilerPlugin({
