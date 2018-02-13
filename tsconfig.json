@@ -15,7 +15,9 @@
         ],
         "types": [
             "webpack-env",
-            "jasmine"
+            "jasmine",
+            "node",
+            "webpack"
         ]
     },
     "exclude": [
