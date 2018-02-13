@@ -1,30 +1,31 @@
-// the common configuration
-const common = require("./webpack.common");
-const helper = require("./helper");
-const merge = require("webpack-merge");
-const webpack = require("webpack");
-const AotPlugin = require("@ngtools/webpack").AngularCompilerPlugin;
-module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
+"use strict";
+exports.__esModule = true;
+var webpack_1 = require("webpack");
+var merge = require("webpack-merge");
+var webpack_common_1 = require("./webpack.common");
+var helper = require("./helper");
+var webpack_2 = require("@ngtools/webpack");
+function server(env) {
+    var isDevBuild = !(env && env.prod);
     var plugins = [
-        new webpack.DllReferencePlugin({
+        new webpack_1.DllReferencePlugin({
             context: __dirname,
             manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json")),
             sourceType: "commonjs2",
             name: "./vendor"
         })
     ];
-    if(!isDevBuild){
-        // Plugins that apply in production builds only
-        plugins.push(new AotPlugin({
+    if (isDevBuild) {
+        plugins.push(
+        // plugins that apply in development builds only
+        new webpack_2.AngularCompilerPlugin({
             tsConfigPath: "./tsconfig.json",
-            entryModule: helper.root("client", "app", "app.server.module#AppModule"),
-            exclude: ["./**/*.browser.ts"]
+            entryModule: helper.root("client", "app", "app.server.module#AppModule")
         }));
     }
-    return merge(common(env), {
-        resolve: { 
-            mainFields: ["main"] 
+    return merge(webpack_common_1.configuration(env), {
+        resolve: {
+            mainFields: ["main"]
         },
         entry: {
             "server": helper.root("client", "boot.server.ts")
@@ -38,3 +39,4 @@ module.exports = (env) => {
         devtool: "inline-source-map"
     });
 }
+exports.server = server;

@@ -1,39 +1,39 @@
-// the common configuration
-const common = require("./webpack.common");
-const helper = require("./helper");
-const merge = require("webpack-merge");
-const webpack = require("webpack");
-const AotPlugin = require("@ngtools/webpack").AngularCompilerPlugin;
-const path = require("path");
-module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
+"use strict";
+exports.__esModule = true;
+var webpack_1 = require("webpack");
+var merge = require("webpack-merge");
+var webpack_common_1 = require("./webpack.common");
+var helper = require("./helper");
+var webpack_2 = require("@ngtools/webpack");
+var path = require("path");
+function browser(env) {
+    var isDevBuild = !(env && env.prod);
     var plugins = [
-        new webpack.DllReferencePlugin({
+        new webpack_1.DllReferencePlugin({
             context: __dirname,
             manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
         })
     ];
-
     if (isDevBuild) {
         plugins.push(
-            // Plugins that apply in development builds only
-            new webpack.SourceMapDevToolPlugin({
-                filename: "[file].map", // Remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(helper.root("wwwroot", "dist"), "[resourcePath]") // Point sourcemap entries to the original file locations on disk
-            })
-        );
-    } else {
-        plugins.push(...[
-            // Plugins that apply in production builds only
-            new AotPlugin({
+        // plugins that apply in development builds only
+        new webpack_1.SourceMapDevToolPlugin({
+            filename: "[file].map",
+            // point sourcemap entries to the original file locations on disk
+            moduleFilenameTemplate: path.relative(helper.root("wwwroot", "dist"), "[resourcePath]")
+        }));
+    }
+    else {
+        plugins.push.apply(plugins, [
+            // plugins that apply in production builds only
+            new webpack_2.AngularCompilerPlugin({
                 tsConfigPath: "./tsconfig.json",
-                entryModule:  helper.root("client", "app", "app.browser.module#AppModule"),
-                exclude: ["/**/*.server.ts"]
+                entryModule: helper.root("client", "app", "app.browser.module#AppModule")
             }),
-            new webpack.optimize.UglifyJsPlugin()
+            new webpack_1.optimize.UglifyJsPlugin()
         ]);
     }
-    return merge(common(env), {
+    return merge(webpack_common_1.configuration(env), {
         entry: {
             "app": helper.root("client", "boot.browser.ts")
         },
@@ -43,3 +43,4 @@ module.exports = (env) => {
         plugins: plugins
     });
 }
+exports.browser = browser;

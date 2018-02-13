@@ -1,12 +1,13 @@
-const helper = require("./helper");
-const CheckerPlugin = require("awesome-typescript-loader").CheckerPlugin;
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const webpack = require("webpack");
-
-module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
-    const buildSass = env && env.sass;
-    const extractSass = new ExtractTextPlugin({
+"use strict";
+exports.__esModule = true;
+var webpack_1 = require("webpack");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var awesome_typescript_loader_1 = require("awesome-typescript-loader");
+var helper = require("./helper");
+function configuration(env) {
+    var isDevBuild = !(env && env.prod);
+    var buildSass = env && env.sass;
+    var extractTextPlugin = new ExtractTextPlugin({
         filename: "theme.css",
         disable: isDevBuild || buildSass
     });
@@ -45,7 +46,7 @@ module.exports = (env) => {
                     test: /\.scss$/,
                     exclude: helper.root("client", "app"),
                     include: helper.root("client", "theming"),
-                    loaders: extractSass.extract({
+                    use: extractTextPlugin.extract({
                         use: [
                             {
                                 loader: "css-loader"
@@ -65,9 +66,10 @@ module.exports = (env) => {
             ]
         },
         plugins: [
-            new CheckerPlugin(),
-            new webpack.ContextReplacementPlugin(/angular(\\|\/)core/, helper.root("client")),
-            extractSass
+            new awesome_typescript_loader_1.CheckerPlugin(),
+            new webpack_1.ContextReplacementPlugin(/angular(\\|\/)core/, helper.root("client")),
+            extractTextPlugin
         ]
-    }
+    };
 }
+exports.configuration = configuration;

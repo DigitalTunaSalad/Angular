@@ -1,6 +1,6 @@
 import { Configuration, Plugin, DllReferencePlugin } from "webpack";
 import * as merge from "webpack-merge";
-import { common } from "./webpack.common";
+import { configuration } from "./webpack.common";
 import * as helper from "./helper";
 import { AngularCompilerPlugin } from "@ngtools/webpack";
 import * as path from "path";
@@ -23,7 +23,7 @@ export function server(env: any): Configuration {
             })
         );
     }
-    return merge(common(env), {
+    return merge(configuration(env), {
         resolve: {
             mainFields: ["main"]
         },

@@ -2,7 +2,7 @@ import { Configuration, ContextReplacementPlugin } from "webpack";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 import { CheckerPlugin } from "awesome-typescript-loader";
 import * as helper from "./helper";
-export function common(env: any): Configuration {
+export function configuration(env: any): Configuration {
     const isDevBuild: boolean = !(env && env.prod);
     const buildSass: boolean = env && env.sass;
     const extractTextPlugin: ExtractTextPlugin = new ExtractTextPlugin({

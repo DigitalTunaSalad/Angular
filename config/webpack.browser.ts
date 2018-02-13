@@ -1,6 +1,6 @@
 import { Configuration, Plugin, DllReferencePlugin, SourceMapDevToolPlugin, optimize} from "webpack";
 import * as merge from "webpack-merge";
-import { common } from "./webpack.common";
+import { configuration } from "./webpack.common";
 import * as helper from "./helper";
 import { AngularCompilerPlugin } from "@ngtools/webpack";
 import * as path from "path";
@@ -31,7 +31,7 @@ export function browser(env: any): Configuration {
             new optimize.UglifyJsPlugin()
         ]);
     }
-    return merge(common(env), {
+    return merge(configuration(env), {
         entry: {
             "app": helper.root("client", "boot.browser.ts")
         },

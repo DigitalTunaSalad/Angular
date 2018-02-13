@@ -1,51 +1,30 @@
-// the common configuration
-const common = require("./webpack.vendor.common");
-const helper = require("./helper");
-const merge = require("webpack-merge");
-const webpack = require("webpack");
-
-const treeShakableModules = [
-    "@angular/animations",
-    "@angular/common",
-    "@angular/compiler",
-    "@angular/core",
-    "@angular/forms",
-    "@angular/http",
-    "@angular/platform-browser",
-    "@angular/platform-browser-dynamic",
-    "@angular/router",
-    "zone.js",
-];
-const nonTreeShakableModules = [
-    "es6-promise",
-    "es6-shim",
-    "event-source-polyfill"
-];
-
-const allModules = [...treeShakableModules, ...nonTreeShakableModules];
-
-module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
+"use strict";
+exports.__esModule = true;
+var webpack_vendor_common_1 = require("./webpack.vendor.common");
+var helper = require("./helper");
+var merge = require("webpack-merge");
+var webpack_1 = require("webpack");
+function browser(env) {
+    var isDevBuild = !(env && env.prod);
     var plugins = [
-        new webpack.DllPlugin({
+        new webpack_1.DllPlugin({
             path: helper.root("wwwroot", "dist", "[name]-manifest.json"),
             name: "[name]_[hash]"
         })
     ];
-
     if (!isDevBuild) {
-        plugins.push(new webpack.optimize.UglifyJsPlugin());
+        plugins.push(new webpack_1.optimize.UglifyJsPlugin());
     }
-
-    return merge(common(env), {
+    return merge(webpack_vendor_common_1.configuration(env), {
         entry: {
-            // To keep development builds fast, include all vendor dependencies in the vendor bundle.
-            // But for production builds, leave the tree-shakable ones out so the AOT compiler can produce a smaller bundle.
-            vendor: isDevBuild ? allModules : nonTreeShakableModules
+            // to keep development builds fast, include all vendor dependencies in the vendor bundle.
+            // but for production builds, leave the tree-shakable ones out so the AOT compiler can produce a smaller bundle.
+            vendor: isDevBuild ? webpack_vendor_common_1.allModules : webpack_vendor_common_1.nonTreeShakableModules
         },
         output: {
             path: helper.root("wwwroot", "dist")
         },
         plugins: plugins
-    })
+    });
 }
+exports.browser = browser;

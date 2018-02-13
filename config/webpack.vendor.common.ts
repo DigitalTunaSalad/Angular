@@ -1,8 +1,7 @@
-"use strict";
-exports.__esModule = true;
-var webpack_1 = require("webpack");
-var helper = require("./helper");
-exports.treeShakableModules = [
+import { IgnorePlugin, ContextReplacementPlugin, Configuration } from "webpack";
+import * as helper from "./helper";
+
+export const treeShakableModules: string[] = [
     "@angular/animations",
     "@angular/common",
     "@angular/compiler",
@@ -14,13 +13,19 @@ exports.treeShakableModules = [
     "@angular/router",
     "zone.js",
 ];
-exports.nonTreeShakableModules = [
+
+export const nonTreeShakableModules: string[] = [
     "es6-promise",
     "es6-shim",
     "event-source-polyfill"
 ];
-exports.allModules = exports.treeShakableModules.concat(exports.nonTreeShakableModules);
-function configuration(env) {
+
+export const allModules: string[] = [
+    ...treeShakableModules,
+    ... nonTreeShakableModules
+];
+
+export function configuration(env: any): Configuration {
     return {
         stats: {
             modules: false
@@ -42,9 +47,8 @@ function configuration(env) {
             library: "[name]_[hash]"
         },
         plugins: [
-            new webpack_1.ContextReplacementPlugin(/angular(\\|\/)core/, helper.root("client")),
-            new webpack_1.IgnorePlugin(/^vertx$/) // workaround for https://github.com/stefanpenner/es6-promise/issues/100
+            new ContextReplacementPlugin(/angular(\\|\/)core/, helper.root("client")),
+            new IgnorePlugin(/^vertx$/) // workaround for https://github.com/stefanpenner/es6-promise/issues/100
         ]
     };
 }
-exports.configuration = configuration;
