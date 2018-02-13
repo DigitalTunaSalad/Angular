@@ -4,6 +4,7 @@
   "description": "Angular boilerplate code using webpack",
   "scripts": {
     "test": "karma start config/karma.conf.js",
+    "build:webpack": "tsc -p tsconfig.webpack.json",
     "build:app": "node node_modules/webpack/bin/webpack.js",
     "build:vendor": "node node_modules/webpack/bin/webpack.js --config webpack.vendor.config.js",
     "build": "npm run build:vendor && npm run build:app",
