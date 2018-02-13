@@ -73,3 +73,5 @@ client/dist
 /config/webpack.common.js
 /config/webpack.browser.js
 /config/helper.js
+/webpack.vendor.config.js
+/webpack.config.js
