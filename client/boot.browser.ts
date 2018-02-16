@@ -7,8 +7,11 @@ import { AppModule } from "./app/app.browser.module";
 if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => {
-        platformBrowserDynamic().bootstrapModule(AppModule).then(appModule => appModule.destroy());
+        modulePromise.then(appModule => appModule.destroy());
     });
 } else {
     enableProdMode();
 }
+
+// tslint:disable-next-line:typedef
+const modulePromise = platformBrowserDynamic().bootstrapModule(AppModule);

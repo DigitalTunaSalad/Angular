@@ -2,10 +2,10 @@ namespace Server.Rendering
 {
     public class RenderRequest 
     {
-        public object Cookies { get; set; }
+        public object cookies { get; set; }
         
-        public object Headers { get; set; }
+        public object headers { get; set; }
         
-        public object Host { get; set; }
+        public object host { get; set; }
     }
 }

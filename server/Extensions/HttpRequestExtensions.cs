@@ -15,9 +15,9 @@ namespace Server.Extensions
         {
 
             RenderRequest requestSimplified = new RenderRequest();
-            requestSimplified.Cookies = request.Cookies;
-            requestSimplified.Headers = request.Headers;
-            requestSimplified.Host = request.Host;
+            requestSimplified.cookies = request.Cookies;
+            requestSimplified.headers = request.Headers;
+            requestSimplified.host = request.Host;
 
             return requestSimplified;
         }
@@ -41,8 +41,8 @@ namespace Server.Extensions
 
             // By default we're passing down Cookies, Headers, Host from the Request object here
             TransferData transferData = new TransferData();
-            transferData.Request = Request.AbstractRequestInfo();
-            transferData.ThisCameFromDotNET = "Hi Angular it's asp.net :)";
+            transferData.request = Request.AbstractRequestInfo();
+            transferData.thisCameFromDotNET = "Hi Angular it's asp.net :)";
             // Add more customData here, add it to the TransferData class
 
             //Prerender now needs CancellationToken

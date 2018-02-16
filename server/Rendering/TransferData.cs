@@ -2,9 +2,9 @@ namespace Server.Rendering
 {
     public class TransferData
     {
-        public dynamic Request { get; set; }
+        public dynamic request { get; set; }
 
         // Your data here ?
-        public object ThisCameFromDotNET { get; set; }
+        public object thisCameFromDotNET { get; set; }
     }
 }
