@@ -3,6 +3,8 @@ import "./polyfills/server.polyfills";
 import { AppModule } from "./app/app.server.module";
 import { createServerRenderer, BootFuncParams, RenderResult } from "aspnet-prerendering";
 import { ngAspnetCoreEngine, IEngineOptions, createTransferScript } from "@nguniversal/aspnetcore-engine";
+import { enableProdMode } from "@angular/core";
+enableProdMode();
 export default createServerRenderer((params: BootFuncParams): Promise<RenderResult> => {
     let setupOptions: IEngineOptions;
     setupOptions = {

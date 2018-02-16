@@ -2,6 +2,9 @@ import "zone.js/dist/zone-node";
 import "./polyfills/server.polyfills";
 import { createServerRenderer, BootFuncParams, RenderResult } from "aspnet-prerendering";
 import { ngAspnetCoreEngine, IEngineOptions, createTransferScript } from "@nguniversal/aspnetcore-engine";
+import { enableProdMode } from "@angular/core";
+const { AppModuleNgFactory } = require("./app/app.server.module.ngfactory");
+enableProdMode();
 export default createServerRenderer((params: BootFuncParams): Promise<RenderResult> => {
     let setupOptions: IEngineOptions;
     setupOptions = {
@@ -11,7 +14,7 @@ export default createServerRenderer((params: BootFuncParams): Promise<RenderResu
             // optional - Any other Server providers you want to pass
             // (remember you'll have to provide them for the Browser as well)
         ],
-        ngModule: require("./app/app.server.module.ngfactory")
+        ngModule: AppModuleNgFactory
     };
     return ngAspnetCoreEngine(setupOptions).then(response => {
 

@@ -41,7 +41,6 @@ function rules(isDevBuild) {
         {
             test: /\.scss$/,
             include: helper.root("client", "app"),
-            exclude: helper.root("client", "theming"),
             loaders: ["raw-loader", "sass-loader"]
         },
         {

@@ -11,7 +11,8 @@
     "build:vendor-prod": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/vendor/webpack.config.js --env.prod",
     "build:app-prod": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/app/webpack.config.js --env.prod",
     "build": "npm run build:vendor && npm run build:app",
-    "build:prod": "npm run build:vendor-prod && npm run build:app-prod"
+    "build:prod": "npm run build:vendor-prod && npm run build:app-prod",
+    "start": "dotnet run -p ./server/Angular.csproj"
   },
   "author": "",
   "license": "ISC",
