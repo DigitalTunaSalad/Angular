@@ -1,16 +1,23 @@
 import { NgModule } from "@angular/core";
-import { HttpModule } from "@angular/http";
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { BrowserModule, BrowserTransferStateModule } from "@angular/platform-browser";
+import { TransferHttpCacheModule } from "@nguniversal/common";
 import { AppComponent, HomeComponent } from "./components";
 import { AppRouteModule } from "./app.route.module";
-import { CommonModule } from "@angular/common";
 
 @NgModule({
     imports: [
         CommonModule,
-        HttpModule,
+        BrowserModule.withServerTransition({
+            appId: "app-id" // make sure this matches with your Server NgModule
+        }),
+        HttpClientModule,
+        TransferHttpCacheModule,
+        BrowserTransferStateModule,
         FormsModule,
-        AppRouteModule,
+        AppRouteModule
     ],
     declarations: [
         AppComponent,

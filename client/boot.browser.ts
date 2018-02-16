@@ -1,19 +1,14 @@
-import "reflect-metadata";
-import "zone.js";
-import "./theming/theme.scss";
-import { AppModule } from "./app/app.browser.module";
+import "./polyfills/browser.polyfills";
+import { enableProdMode } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
-import { NgModuleRef, enableProdMode } from "@angular/core";
+import { AppModule } from "./app/app.browser.module";
+
+// // Enable either Hot Module Reloading or production mode
 if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => {
-        const oldRootElem: Element | null = document.querySelector("app");
-        const newRootElem: Element | null = document.createElement("app");
-        oldRootElem!.parentNode!.insertBefore(newRootElem, oldRootElem);
-        modulePromise.then(appModule => appModule.destroy());
+        platformBrowserDynamic().bootstrapModule(AppModule).then(appModule => appModule.destroy());
     });
 } else {
     enableProdMode();
 }
-
-const modulePromise: Promise<NgModuleRef<AppModule>> = platformBrowserDynamic().bootstrapModule(AppModule);
