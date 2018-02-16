@@ -19,7 +19,7 @@ export function configure(env: any): Configuration {
         module: {
             rules: rules(isDevBuild)
         },
-        plugins: plugins(isDevBuild)
+        plugins: plugins()
     };
 }
 
@@ -66,12 +66,9 @@ function rules(isDevBuild: boolean): Rule[] {
     ];
 }
 
-function plugins(isDevBuild: boolean): Plugin[] {
+function plugins(): Plugin[] {
     return [
         new CheckerPlugin(),
-        new ExtractTextPlugin({
-            filename: "theme.css",
-            disable: isDevBuild
-        })
+        new ExtractTextPlugin("theme.css")
     ];
 }

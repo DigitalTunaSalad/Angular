@@ -20,7 +20,7 @@ function configure(env) {
         module: {
             rules: rules(isDevBuild)
         },
-        plugins: plugins(isDevBuild)
+        plugins: plugins()
     };
 }
 exports.configure = configure;
@@ -41,6 +41,7 @@ function rules(isDevBuild) {
         {
             test: /\.scss$/,
             include: helper.root("client", "app"),
+            exclude: helper.root("client", "theming"),
             loaders: ["raw-loader", "sass-loader"]
         },
         {
@@ -66,12 +67,9 @@ function rules(isDevBuild) {
         }
     ];
 }
-function plugins(isDevBuild) {
+function plugins() {
     return [
         new awesome_typescript_loader_1.CheckerPlugin(),
-        new ExtractTextPlugin({
-            filename: "theme.css",
-            disable: isDevBuild
-        })
+        new ExtractTextPlugin("theme.css")
     ];
 }
