@@ -5,9 +5,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule, BrowserTransferStateModule } from "@angular/platform-browser";
 import { TransferHttpCacheModule } from "@nguniversal/common";
-import { AppComponent, HomeComponent } from "./components";
+import { AppComponent, HomeComponent, AboutComponent } from "./components";
 import { AppRouteModule } from "./app.route.module";
-
+import { MatCardModule } from "@angular/material";
 @NgModule({
     imports: [
         CommonModule,
@@ -18,11 +18,13 @@ import { AppRouteModule } from "./app.route.module";
         TransferHttpCacheModule,
         BrowserTransferStateModule,
         FormsModule,
-        AppRouteModule
+        AppRouteModule,
+        MatCardModule
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        AboutComponent
     ]
 })
 export class AppSharedModule { }

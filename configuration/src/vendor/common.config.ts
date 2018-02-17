@@ -10,6 +10,9 @@ export const treeShakableModules: string[] = [
     "@angular/platform-browser",
     "@angular/platform-browser-dynamic",
     "@angular/router",
+    "@angular/cdk",
+    "@angular/material",
+    "hammerjs",
     "zone.js",
 ];
 export const nonTreeShakableModules: string[] = [

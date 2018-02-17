@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+@mixin footer-theme($theme) {
+    $primary: map-get($theme, primary);
+    $contrast: map-get($primary, contrast);
+    .footer {
+        background: mat-color($primary, 800);
+        color: mat-color($contrast, 800);
+    }
+}
+
+@mixin footer-typography($config) {
+    .footer {
+      font: {
+        family: mat-font-family($config, button);
+        size: mat-font-size($config, button);
+        weight: mat-font-weight($config, button);
+      }
+    }
+  }

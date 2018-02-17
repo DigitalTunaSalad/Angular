@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+@mixin main-theme($theme) {
+  $primary: map-get($theme, primary);    
+  $foreground: map-get($primary, contrast);
+  .main {
+      background: mat-color($primary, 600);
+      color: mat-color($foreground, 500);
+  }
+}
+
+@mixin main-typography($config) {
+    .main {
+      font: {
+        family: mat-font-family($config, button);
+        size: mat-font-size($config, button);
+        weight: mat-font-weight($config, button);
+      }
+    }
+  }

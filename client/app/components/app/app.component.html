@@ -1,2 +1,12 @@
-<h1>AppComponent</h1>
-<router-outlet></router-outlet>
+<header class="header">
+    <nav>
+        <a class="logo" routerLink="home">icon</a>
+        <a routerLink="about" routerLinkActive="active">about</a>
+    </nav>
+</header>
+<main class="main">    
+    <router-outlet></router-outlet>
+</main>
+<footer class="footer">
+        <p class="mat-small">© 2017 Digital Tuna Salad.  All rights reserved. </p>
+</footer>
