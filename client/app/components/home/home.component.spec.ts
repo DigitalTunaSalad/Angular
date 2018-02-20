@@ -1,5 +1,5 @@
 import { HomeComponent } from "./home.component";
-import { TestBed, async, ComponentFixture } from "@angular/core/testing";
+import { TestBed, ComponentFixture } from "@angular/core/testing";
 
 let fixture: ComponentFixture<HomeComponent>;
 

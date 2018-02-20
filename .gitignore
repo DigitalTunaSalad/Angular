@@ -66,3 +66,12 @@ obj
 
 wwwroot/dist
 client/dist
+/config/webpack.vendor.browser.js
+/config/webpack.vendor.common.js
+/config/webpack.vendor.server.js
+/config/webpack.server.js
+/config/webpack.common.js
+/config/webpack.browser.js
+/config/helper.js
+/webpack.vendor.config.js
+/webpack.config.js
