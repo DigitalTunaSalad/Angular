@@ -2,11 +2,13 @@ import * as electron from "electron";
 import { BrowserWindow, App, InterceptFileProtocolRequest } from "electron";
 import * as path from "path";
 import * as url from "url";
-
+import { getConfig, IConfig } from "./config/config";
 class Main {
     private app: App;
+    private config: IConfig;
     private window: BrowserWindow;
-    public run():void {
+    public run(): void {
+        this.config = getConfig();
         this.app = electron.app;
         // this method will be called when Electron has finished
         // initialization and is ready to create browser windows.
@@ -36,9 +38,10 @@ class Main {
         this.window = new BrowserWindow({ width: 1200, height: 900 });
         // loads the index.html of the app.
         this.window.loadURL(url.format({
-            pathname: "index.html",
-            protocol: "file:",
-            slashes: true
+            pathname: this.config.url,
+            protocol: "http:",
+            slashes: true,
+            port: this.config.port
         }));
 
         electron.protocol.interceptFileProtocol("file", (request: InterceptFileProtocolRequest, callback: (path: string) => void) => {

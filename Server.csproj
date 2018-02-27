@@ -35,7 +35,7 @@
     <Exec Command="npm install" />
     <Exec Command="npm run build:webpack" />
     <Exec Command="npm run build:vendor" />
-    <Exec Command="npm run  build:app" />
+    <Exec Command="npm run build:app" />
   </Target>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

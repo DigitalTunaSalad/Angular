@@ -3,8 +3,8 @@ export interface IConfig {
     port: number;
 }
 
-module.exports = (env):IConfig =>  {
-    const isDevBuild: boolean = !(env && env.prod);
+export const getConfig: () => IConfig = (): IConfig => {
+    const isDevBuild: boolean = !(process.env && process.env.prod);
     return {
         url: "localhost",
         port: 321123
