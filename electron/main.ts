@@ -4,9 +4,9 @@ import * as path from "path";
 import * as url from "url";
 import { getConfig, IConfig } from "./config/config";
 class Main {
-    private app: App;
-    private config: IConfig;
-    private window: BrowserWindow;
+    private app: App | undefined;
+    private config: IConfig | undefined;
+    private window: BrowserWindow | undefined | null;
     public run(): void {
         this.config = getConfig();
         this.app = electron.app;
@@ -19,7 +19,7 @@ class Main {
         this.app.on("window-all-closed", () => {
             // on OS X it is common for applications and their menu bar
             // to stay active until the user quits explicitly with Cmd + Q
-            if (process.platform !== "darwin") {
+            if (process.platform !== "darwin" && this.app) {
                 this.app.quit();
             }
         });
@@ -38,10 +38,10 @@ class Main {
         this.window = new BrowserWindow({ width: 1200, height: 900 });
         // loads the index.html of the app.
         this.window.loadURL(url.format({
-            pathname: this.config.url,
+            pathname: this.config ? this.config.url : "localhost",
             protocol: "http:",
             slashes: true,
-            port: this.config.port
+            port: this.config ? this.config.port : 5000
         }));
 
         electron.protocol.interceptFileProtocol("file", (request: InterceptFileProtocolRequest, callback: (path: string) => void) => {
