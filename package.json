@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:webpack": "tsc -p configuration/src/tsconfig.json",
+    "build:electron": "node_modules/.bin/tsc election/main.ts",
+    "build:webpack": "node_modules/.bin/tsc -p configuration/src/tsconfig.json",
     "build:vendor": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/vendor/webpack.config.js",
     "build:app": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/app/webpack.config.js",
     "build:vendor-prod": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/vendor/webpack.config.js --env.prod",
     "build:app-prod": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/app/webpack.config.js --env.prod",
     "build": "npm run build:vendor && npm run build:app",
     "build:prod": "npm run build:vendor-prod && npm run build:app-prod",
-    "start": "dotnet run"
+    "start": "dotnet run",
+    "start:electron": "node_modules/.bin/election"
   },
   "author": "",
   "license": "ISC",
