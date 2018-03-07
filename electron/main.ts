@@ -1,6 +1,5 @@
 import * as electron from "electron";
-import { BrowserWindow, App, InterceptFileProtocolRequest } from "electron";
-import * as path from "path";
+import { BrowserWindow, App } from "electron";
 import * as url from "url";
 import { getConfig, IConfig } from "./config/config";
 import { execFile } from "child_process";
