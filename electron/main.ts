@@ -55,13 +55,6 @@ class Main {
             slashes: true,
             port: this.config ? this.config.port : 5000
         }));
-
-        electron.protocol.interceptFileProtocol("file", (request: InterceptFileProtocolRequest, callback: (path: string) => void) => {
-            let p: string;
-            p = request.url.substr("file:///".length);
-            p = path.join(__dirname, "build", p);
-            callback(p);
-        });
         // open the DevTools.
         this.window.webContents.openDevTools();
 
