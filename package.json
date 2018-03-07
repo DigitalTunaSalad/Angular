@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:electron": "node_modules/.bin/tsc -p ",
+    "build:electron": "node_modules/.bin/tsc electron/main.ts --outDir bin/Electron && cp electron/package.json bin/Electron",
     "build:webpack": "node_modules/.bin/tsc -p configuration/src/tsconfig.json",
     "build:vendor": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/vendor/webpack.config.js",
     "build:app": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/app/webpack.config.js",

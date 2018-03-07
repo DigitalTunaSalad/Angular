@@ -27,6 +27,9 @@
     "include": [
       "client"
     ],
+    "exclude": [
+      "electron"
+    ],
     "typeRoots": [
         "node_modules/@types"
     ]

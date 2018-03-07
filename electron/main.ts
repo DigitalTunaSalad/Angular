@@ -3,12 +3,24 @@ import { BrowserWindow, App, InterceptFileProtocolRequest } from "electron";
 import * as path from "path";
 import * as url from "url";
 import { getConfig, IConfig } from "./config/config";
+import { execFile } from "child_process";
 class Main {
     private app: App | undefined;
     private config: IConfig | undefined;
     private window: BrowserWindow | undefined | null;
     public run(): void {
         this.config = getConfig();
+        if (!this.config.isDevBuild) {
+            execFile(this.config.exePath as string, [], (error: Error, /*stdout: string, stderr: string*/) => {
+                if (error) {
+                    throw error;
+                }
+                // check for a signal that the process has started completly
+                // then start up the app/window
+            });
+        } else {
+            // startup normally since the process is started by the devenv
+        }
         this.app = electron.app;
         // this method will be called when Electron has finished
         // initialization and is ready to create browser windows.
@@ -38,7 +50,7 @@ class Main {
         this.window = new BrowserWindow({ width: 1200, height: 900 });
         // loads the index.html of the app.
         this.window.loadURL(url.format({
-            pathname: this.config ? this.config.url : "localhost",
+            pathname: this.config ? this.config.url : "localhost:5000",
             protocol: "http:",
             slashes: true,
             port: this.config ? this.config.port : 5000
