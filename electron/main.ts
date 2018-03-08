@@ -2,24 +2,50 @@ import * as electron from "electron";
 import { BrowserWindow, App } from "electron";
 import * as url from "url";
 import { getConfig, IConfig } from "./config/config";
-import { execFile } from "child_process";
+import { execFile, ChildProcess, exec } from "child_process";
 class Main {
     private app: App | undefined;
     private config: IConfig | undefined;
     private window: BrowserWindow | undefined | null;
+    private process: ChildProcess | undefined;
     public run(): void {
         this.config = getConfig();
-        if (!this.config.isDevBuild) {
-            execFile(this.config.exePath as string, [], (error: Error, /*stdout: string, stderr: string*/) => {
+        if (this.config.isDevBuild) {
+            this.process = exec("npm start", (error: Error, stdout: string, stderr: string) => {
                 if (error) {
-                    throw error;
+                    console.error(`exec error: ${error}`);
+                    return;
                 }
                 // check for a signal that the process has started completly
                 // then start up the app/window
+                console.log(`stdout: ${stdout}`);
+                console.log(`stderr: ${stderr}`);
             });
         } else {
-            // startup normally since the process is started by the devenv
+            this.process = execFile(this.config.exec as string, [], (error: Error, stdout: string, stderr: string) => {
+                if (error) {
+                    return;
+                }
+                // check for a signal that the process has started completly
+                // then start up the app/window
+                console.log(`stdout: ${stdout}`);
+                console.log(`stderr: ${stderr}`);
+            });
         }
+
+        this.process.stdout.on("data", d => {
+            d = d.toString();
+            if (d.indexOf("Application started") !== -1) {
+                console.log("Starting app");
+                this.createWindow();
+            }
+            console.log(d);
+        });
+
+        this.initApp();
+    }
+
+    private initApp(): void {
         this.app = electron.app;
         // this method will be called when Electron has finished
         // initialization and is ready to create browser windows.
@@ -33,14 +59,15 @@ class Main {
             if (process.platform !== "darwin" && this.app) {
                 this.app.quit();
             }
+            this.process.kill();
         });
 
         this.app.on("activate", () => {
             // on OS X it's common to re-create a window in the app when the
             // dock icon is clicked and there are no other windows open.
-            if (this.window === null) {
-                this.createWindow();
-            }
+            // if (this.window === null) {
+            //     this.createWindow();
+            // }
         });
     }
 
@@ -64,6 +91,10 @@ class Main {
             // when you should delete the corresponding element.
             this.window = null;
         });
+    }
+
+    private createSplashScreen(): void {
+        console.log("TODO");
     }
 }
 

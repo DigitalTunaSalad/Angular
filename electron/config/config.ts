@@ -2,14 +2,15 @@ export interface IConfig {
     url: string;
     port: number;
     isDevBuild: boolean;
-    exePath?: string;
+    exec?: string;
 }
 
-export const getConfig: () => IConfig = (): IConfig => {
+export function getConfig(): IConfig {
     const isDevBuild: boolean = !(process.env && process.env.prod);
     return {
         url: "localhost:5000",
         port: 321123,
-        isDevBuild: isDevBuild
+        isDevBuild: isDevBuild,
+        exec: "../../npm start"
     };
-};
+}

@@ -14,7 +14,7 @@
     "build": "npm run build:vendor && npm run build:app",
     "build:prod": "npm run build:vendor-prod && npm run build:app-prod",
     "start": "dotnet run",
-    "start:electron": "node_modules/.bin/election"
+    "start:electron": "node_modules/.bin/electron bin/Electron --enable-logging"
   },
   "author": "",
   "license": "ISC",
