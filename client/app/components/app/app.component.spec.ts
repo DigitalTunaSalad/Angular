@@ -22,7 +22,7 @@ describe("AppComponent", () => {
         const app: AppComponent = fixture.debugElement.componentInstance;
         expect(app.title).toEqual("App");
     }));
-    it("should render copyright information in the footer", async(() => {
+    it("should render 'AppComponent' in the h1 tag", async(() => {
         const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled: HTMLElement = fixture.debugElement.nativeElement;
