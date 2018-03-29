@@ -4,6 +4,8 @@
     },
     "files": [
         "app/webpack.config.ts",
-        "vendor/webpack.config.ts"
+        "vendor/webpack.config.ts",
+        "testing/karma.conf.ts",
+        "testing/karma-test-shim.ts"
     ]
 }
