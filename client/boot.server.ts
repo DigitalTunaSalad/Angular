@@ -17,7 +17,7 @@ export default createServerRenderer((params: BootFuncParams): Promise<RenderResu
         ngModule: AppModule
     };
     return ngAspnetCoreEngine(setupOptions).then(response => {
-
+        response.globals.title = "App";
         // apply your transferData to response.globals
         response.globals.transferData = createTransferScript({
             someData: "Transfer this to the client on the window.TRANSFER_CACHE {} object",
