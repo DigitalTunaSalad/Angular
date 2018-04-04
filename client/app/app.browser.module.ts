@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { ORIGIN_URL, REQUEST } from "@nguniversal/aspnetcore-engine";
+import { ORIGIN_URL, REQUEST } from "@nguniversal/aspnetcore-engine/tokens";
 import { AppSharedModule } from "./app.shared.module";
 import { AppComponent } from "./components";
 import { BrowserPrebootModule } from "preboot/browser";
