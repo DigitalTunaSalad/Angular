@@ -1,15 +1,21 @@
 import { RouterTestingModule } from "@angular/router/testing";
 import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 describe("AppComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                RouterTestingModule
+                RouterTestingModule,
+                TranslateModule.forRoot({
+                    loader: {
+                        provide: TranslateLoader,
+                        useClass: TranslateFakeLoader
+                    }
+                })
             ],
-            declarations: [
-                AppComponent
-            ],
+            declarations: [AppComponent],
+            providers: [TranslateModule]
         }).compileComponents();
     }));
     it("should create the app", async(() => {

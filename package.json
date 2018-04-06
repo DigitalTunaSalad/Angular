@@ -64,7 +64,7 @@
     "@nguniversal/aspnetcore-engine": "^5.0.0",
     "@nguniversal/common": "^5.0.0",
     "@ngx-translate/core": "~9.0.0",
-    "@ngx-translate/http-loader": "^3.0.1",
+    "@ngx-translate/http-loader": "~2.0.0",
     "@types/webpack-env": "^1.13.5",
     "aspnet-prerendering": "^3.0.1",
     "core-js": "^2.5.3",
