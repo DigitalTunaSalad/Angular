@@ -63,7 +63,7 @@ bin
 obj
 
 # the dist folders
-
+/configuration/build
 /dist
 /config/webpack.vendor.browser.js
 /config/webpack.vendor.common.js
