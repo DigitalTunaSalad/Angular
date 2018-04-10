@@ -12,7 +12,8 @@
     "build:app-prod": "npm run build:webpack && node node_modules/webpack/bin/webpack.js --config configuration/build/app/webpack.config.js --env.prod",
     "build": "npm run build:vendor && npm run build:app",
     "build:prod": "npm run build:vendor-prod && npm run build:app-prod",
-    "start": "dotnet run"
+    "start": "dotnet run",
+    "clean": "node node_modules/rimraf/rimraf.js dist && node node_modules/rimraf/rimraf.js configuration/build"
   },
   "author": "",
   "license": "ISC",
@@ -43,6 +44,7 @@
     "node-sass": "^4.7.2",
     "phantomjs-prebuilt": "^2.1.16",
     "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
     "tslint": "^5.9.1",

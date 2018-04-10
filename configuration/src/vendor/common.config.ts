@@ -34,7 +34,7 @@ export function configure(env: any): Configuration {
             rules: rules()
         },
         output: {
-            publicPath: "/",
+            publicPath: "dist/",
             filename: "[name].js",
             library: "[name]_[hash]"
         },
