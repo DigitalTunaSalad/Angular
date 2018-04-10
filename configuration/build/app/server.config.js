@@ -15,7 +15,7 @@ function configure(env) {
         plugins: plugins(isDevBuild),
         output: {
             libraryTarget: "commonjs",
-            path: helper.root("client", "dist")
+            path: helper.root("dist", "server")
         },
         target: "node",
         // switch to "inline-source-map" if you want to debug the TS during SSR

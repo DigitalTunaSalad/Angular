@@ -11,7 +11,7 @@ export function configure(env: any): Configuration {
             vendor: common.allModules.concat(["aspnet-prerendering"])
         },
         output: {
-            path: helper.root("client", "dist"),
+            path: helper.root("dist", "server"),
             libraryTarget: "commonjs2"
         },
         plugins: plugins()
@@ -24,7 +24,7 @@ function plugins(): Plugin[] {
     return [
         new DllPlugin({
             context: __dirname,
-            path: helper.root("client", "dist", "[name]-manifest.json"),
+            path: helper.root("dist", "server", "[name]-manifest.json"),
             name: "[name]_[hash]"
         })
     ];

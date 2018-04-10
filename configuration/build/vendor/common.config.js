@@ -32,7 +32,7 @@ function configure(env) {
             rules: rules()
         },
         output: {
-            publicPath: "dist/",
+            publicPath: "/",
             filename: "[name].js",
             library: "[name]_[hash]"
         },

@@ -1,4 +1,5 @@
 import { Configuration, Plugin, DllReferencePlugin, SourceMapDevToolPlugin, optimize, ContextReplacementPlugin } from "webpack";
+import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import * as merge from "webpack-merge";
 import * as common from "./common.config";
 import * as helper from "../common/path.helper";
@@ -12,7 +13,7 @@ export function configure(env: any): Configuration {
             "app": helper.root("client", "boot.browser.ts")
         },
         output: {
-            path: helper.root("wwwroot", "dist")
+            path: helper.root("dist", "browser")
         },
         plugins: plugins(isDevBuild),
         devtool: isDevBuild ? "cheap-eval-source-map" : false,
@@ -29,20 +30,23 @@ function plugins(isDevBuild: boolean): Plugin[] {
         return [
             new DllReferencePlugin({
                 context: __dirname,
-                manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
+                manifest: require(helper.root("dist", "browser", "vendor-manifest.json"))
             }),
             new SourceMapDevToolPlugin({
                 filename: "[file].map", // remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(helper.root("wwwroot", "dist"), "[resourcePath]")
+                moduleFilenameTemplate: path.relative(helper.root("dist", "browser"), "[resourcePath]")
                 // point sourcemap entries to the original file locations on disk
             }),
-            new ContextReplacementPlugin(/(.+)?angular(\\|\/)core(.+)?/, helper.root("client"))
+            new ContextReplacementPlugin(/(.+)?angular(\\|\/)core(.+)?/, helper.root("client")),
+            new CopyWebpackPlugin([
+                { from: helper.root("assets"), to: helper.root("dist", "browser") }
+            ], {})
         ];
     } else {
         return [
             new DllReferencePlugin({
                 context: __dirname,
-                manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
+                manifest: require(helper.root("dist", "browser", "vendor-manifest.json"))
             }),
             new AngularCompilerPlugin({
                 mainPath: helper.root("client", "boot.browser.ts"),
@@ -54,7 +58,10 @@ function plugins(isDevBuild: boolean): Plugin[] {
                 output: (<any>{
                     ascii_only: true,
                 })
-            })
+            }),
+            new CopyWebpackPlugin([
+                { from: helper.root("assets"), to: helper.root("dist", "browser") }
+            ], {})
         ];
     }
 }

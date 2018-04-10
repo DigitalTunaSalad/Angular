@@ -64,8 +64,7 @@ obj
 
 # the dist folders
 
-wwwroot/dist
-client/dist
+/dist
 /config/webpack.vendor.browser.js
 /config/webpack.vendor.common.js
 /config/webpack.vendor.server.js
