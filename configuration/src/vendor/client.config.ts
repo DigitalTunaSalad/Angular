@@ -22,7 +22,7 @@ function plugins(): Plugin[] {
     return [
         new DllPlugin({
             context: __dirname,
-            path: helper.root("dist", "server", "[name]-manifest.json"),
+            path: helper.root("dist", "browser", "[name]-manifest.json"),
             name: "[name]_[hash]"
         })
     ];
