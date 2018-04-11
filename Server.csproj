@@ -15,8 +15,8 @@
   <ItemGroup>
     <!-- Files not to show in IDE -->
     <None Remove="yarn.lock" />
-    <Content Remove="wwwroot\dist\**" />
-    <None Remove="client\dist\**" />
+    <Content Remove="dist\browser\**" />
+    <None Remove="dist\server\**" />
     <Content Remove="coverage\**" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
@@ -46,7 +46,7 @@
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
-      <DistFiles Include="wwwroot\dist\**; client\dist\**" />
+      <DistFiles Include="dist\**" />
       <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -55,9 +55,9 @@
   </Target>
   <Target Name="CleanDist" AfterTargets="Clean">
     <ItemGroup>
-      <FilesToDelete Include="client\dist\**; wwwroot\dist\**" />
+      <FilesToDelete Include="dist\**" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-    <RemoveDir Directories="client\dist; wwwroot\dist" />
+    <RemoveDir Directories="dist" />
   </Target>
 </Project>
