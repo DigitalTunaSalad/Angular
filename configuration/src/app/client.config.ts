@@ -4,6 +4,7 @@ import * as common from "./common.config";
 import * as helper from "../common/path.helper";
 import * as path from "path";
 import { AngularCompilerPlugin } from "@ngtools/webpack";
+import * as CopyWebpackPlugin from "copy-webpack-plugin";
 export function configure(env: any): Configuration {
     const isDevBuild: boolean = !(env && env.prod);
     const commonConfiguration: Configuration = common.configure(env);
@@ -12,7 +13,7 @@ export function configure(env: any): Configuration {
             "app": helper.root("client", "boot.browser.ts")
         },
         output: {
-            path: helper.root("wwwroot", "dist")
+            path: helper.root("dist", "browser")
         },
         plugins: plugins(isDevBuild),
         devtool: isDevBuild ? "cheap-eval-source-map" : false,
@@ -29,11 +30,11 @@ function plugins(isDevBuild: boolean): Plugin[] {
         return [
             new DllReferencePlugin({
                 context: __dirname,
-                manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
+                manifest: require(helper.root("dist", "browser", "vendor-manifest.json"))
             }),
             new SourceMapDevToolPlugin({
                 filename: "[file].map", // remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(helper.root("wwwroot", "dist"), "[resourcePath]")
+                moduleFilenameTemplate: path.relative(helper.root("dist", "browser"), "[resourcePath]")
                 // point sourcemap entries to the original file locations on disk
             }),
             new ContextReplacementPlugin(/(.+)?angular(\\|\/)core(.+)?/, helper.root("client"))
@@ -42,7 +43,7 @@ function plugins(isDevBuild: boolean): Plugin[] {
         return [
             new DllReferencePlugin({
                 context: __dirname,
-                manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
+                manifest: require(helper.root("dist", "browser", "vendor-manifest.json"))
             }),
             new AngularCompilerPlugin({
                 mainPath: helper.root("client", "boot.browser.ts"),

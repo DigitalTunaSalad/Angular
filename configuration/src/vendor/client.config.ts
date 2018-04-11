@@ -10,7 +10,7 @@ export function configure(env: any): Configuration {
             vendor: isDevBuild ? common.allModules : common.nonTreeShakableModules
         },
         output: {
-            path: helper.root("wwwroot", "dist")
+            path: helper.root("dist", "browser")
         },
         plugins: plugins()
     };
@@ -22,7 +22,7 @@ function plugins(): Plugin[] {
     return [
         new DllPlugin({
             context: __dirname,
-            path: helper.root("wwwroot", "dist", "[name]-manifest.json"),
+            path: helper.root("dist", "browser", "[name]-manifest.json"),
             name: "[name]_[hash]"
         })
     ];
