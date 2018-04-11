@@ -12,7 +12,7 @@ function configure(env) {
             vendor: isDevBuild ? common.allModules : common.nonTreeShakableModules
         },
         output: {
-            path: helper.root("wwwroot", "dist")
+            path: helper.root("dist", "browser")
         },
         plugins: plugins()
     };
@@ -23,7 +23,7 @@ function plugins() {
     return [
         new webpack_1.DllPlugin({
             context: __dirname,
-            path: helper.root("wwwroot", "dist", "[name]-manifest.json"),
+            path: helper.root("dist", "browser", "[name]-manifest.json"),
             name: "[name]_[hash]"
         })
     ];

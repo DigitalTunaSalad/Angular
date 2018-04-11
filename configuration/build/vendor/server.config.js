@@ -13,7 +13,7 @@ function configure(env) {
             vendor: common.allModules.concat(["aspnet-prerendering"])
         },
         output: {
-            path: helper.root("client", "dist"),
+            path: helper.root("dist", "server"),
             libraryTarget: "commonjs2"
         },
         plugins: plugins()
@@ -25,7 +25,7 @@ function plugins() {
     return [
         new webpack_1.DllPlugin({
             context: __dirname,
-            path: helper.root("client", "dist", "[name]-manifest.json"),
+            path: helper.root("dist", "server", "[name]-manifest.json"),
             name: "[name]_[hash]"
         })
     ];

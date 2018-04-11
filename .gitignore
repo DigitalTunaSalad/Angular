@@ -63,9 +63,8 @@ bin
 obj
 
 # the dist folders
-
-wwwroot/dist
-client/dist
+/configuration/build
+/dist
 /config/webpack.vendor.browser.js
 /config/webpack.vendor.common.js
 /config/webpack.vendor.server.js

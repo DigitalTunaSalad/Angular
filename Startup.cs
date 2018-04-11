@@ -52,7 +52,7 @@ namespace Server
 
             app.UseStaticFiles(new StaticFileOptions()
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "dist", "browser")),
                 OnPrepareResponse = c =>
                 {
                     //Do not add cache to json files. We need to have new versions when we add new translations.

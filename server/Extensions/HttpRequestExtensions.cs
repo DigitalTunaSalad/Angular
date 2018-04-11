@@ -53,7 +53,7 @@ namespace Server.Extensions
                 "/",
                 nodeServices,
                 cancelToken,
-                new JavaScriptModuleExport(applicationBasePath + "/client/dist/server"),
+                new JavaScriptModuleExport(applicationBasePath + "/dist/server/server"),
                 unencodedAbsoluteUrl,
                 unencodedPathAndQuery,
                 transferData, // Our simplified Request object & any other CustommData you want to send!

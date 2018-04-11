@@ -14,7 +14,7 @@ function configure(env) {
             "app": helper.root("client", "boot.browser.ts")
         },
         output: {
-            path: helper.root("wwwroot", "dist")
+            path: helper.root("dist", "browser")
         },
         plugins: plugins(isDevBuild),
         devtool: isDevBuild ? "cheap-eval-source-map" : false,
@@ -30,11 +30,11 @@ function plugins(isDevBuild) {
         return [
             new webpack_1.DllReferencePlugin({
                 context: __dirname,
-                manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
+                manifest: require(helper.root("dist", "browser", "vendor-manifest.json"))
             }),
             new webpack_1.SourceMapDevToolPlugin({
                 filename: "[file].map",
-                moduleFilenameTemplate: path.relative(helper.root("wwwroot", "dist"), "[resourcePath]")
+                moduleFilenameTemplate: path.relative(helper.root("dist", "browser"), "[resourcePath]")
                 // point sourcemap entries to the original file locations on disk
             }),
             new webpack_1.ContextReplacementPlugin(/(.+)?angular(\\|\/)core(.+)?/, helper.root("client"))
@@ -44,7 +44,7 @@ function plugins(isDevBuild) {
         return [
             new webpack_1.DllReferencePlugin({
                 context: __dirname,
-                manifest: require(helper.root("wwwroot", "dist", "vendor-manifest.json"))
+                manifest: require(helper.root("dist", "browser", "vendor-manifest.json"))
             }),
             new webpack_2.AngularCompilerPlugin({
                 mainPath: helper.root("client", "boot.browser.ts"),
